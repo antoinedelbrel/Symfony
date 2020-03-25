@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{event.name}}
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="menu margin-tb">
+        <div class="gauche pull-left text-left">
+            <h2 class="titre"> {{ event.name }}</h2>
+            <span>{{ event.date }}</span>
+        </div>
+        <div class="recherche">
+            <input type="text" class="searchTerm">
+            <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+        <div class="droite pull-right">
+            <a class="btn btn-primary " href="{{ path('events_index') }}"> Back</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
