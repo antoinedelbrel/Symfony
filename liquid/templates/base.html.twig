@@ -11,9 +11,10 @@
 
 <body>
     {% include 'partials/header.html.twig' %}
-
-    {% block body %}{% endblock %}
-
+    <div id="parent">
+        {% block body %}
+        {% endblock %}
+    </div>
     {% include 'partials/footer.html.twig' %}
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

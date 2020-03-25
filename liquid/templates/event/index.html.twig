@@ -29,17 +29,14 @@
                 <td>{{ event.name }}</td>
                 <td>{{ event.date|date('d-m-Y') }}</td>
                 <td>
-                    <form action="{{ path('events_delete',['id'=>event.id]) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ path('events_show',['id'=>event.id]) }}">Show</a>
 
-                        <a class="btn btn-primary" href="{{ path('events_edit',['id'=>event.id]) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ path('events_show',{slug: event.id}) }}">Show</a>
 
-                        @csrf
-                        @method('DELETE')
+                    <a class="btn btn-primary" href="{{ path('events_edit',{slug: event.id}) }}">Edit</a>
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <a class="btn btn-danger" href="{{ path('events_delete',{slug: event.id}) }}">Delete</a>
+
                 </td>
             </tr>
             {% endfor %}

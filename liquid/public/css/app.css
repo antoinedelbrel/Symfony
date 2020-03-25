@@ -66,6 +66,12 @@ li {
     }
 }
 
+#parent {
+    min-height: 82vh;
+    display: flex;
+    flex-direction: column;
+}
+
 // footer
 footer {
     width: 100%;

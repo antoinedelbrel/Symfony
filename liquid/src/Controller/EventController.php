@@ -65,6 +65,40 @@ class EventController extends AbstractController
     }
 
     /**
+     * Permet de modifier un évenement
+     * 
+     * @Route("/events/{slug}/edit", name="events_edit")
+     * 
+     * @return Response
+     */
+    public function edit(Event $event, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(EventType::class, $event);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($event);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Les modifications de l'évenement <strong>{$event->getName()}</strong> ont bien été enregistré !"
+            );
+
+            return $this->redirectToRoute('events_show', [
+                'slug' => $event->getSlug()
+            ]);
+        }
+
+        return $this->render('event/edit.html.twig', [
+            'form' => $form->createView(),
+            'event' => $event
+        ]);
+    }
+
+    /**
      * Permet d'afficher un seul évenememnt
      *
      * @Route("/events/{slug}", name="events_show")
