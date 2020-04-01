@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{guest.name}}
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="menu margin-tb">
+        <div class="gauche pull-left text-left">
+            <h2 class="titre"> {{ guest.name }}</h2>
+            <h2 class="titre">{{ guest.email }}</h2>
+        </div>
+        <div class="droite pull-right">
+            <a class="btn btn-primary " href="{{ path('guests_index') }}"> Back</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

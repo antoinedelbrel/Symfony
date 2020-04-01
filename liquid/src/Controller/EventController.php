@@ -32,6 +32,7 @@ class EventController extends AbstractController
      * 
      * 
      * @param Request $request
+     * @param EntityManagerInterface $manager
      * @return Response
      */
     public function create(Request $request, EntityManagerInterface $manager)
@@ -53,7 +54,7 @@ class EventController extends AbstractController
                 "L'annonce <strong>{$event->getName()}</strong> a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('events_show', [
+            return $this->redirectToRoute('events_index', [
                 'slug' => $event->getSlug()
             ]);
         }
@@ -69,6 +70,9 @@ class EventController extends AbstractController
      * 
      * @Route("/events/{slug}/edit", name="events_edit")
      * 
+     * @param Event $event
+     * @param Request $request
+     * @param EntityManagerInterface $manager
      * @return Response
      */
     public function edit(Event $event, Request $request, EntityManagerInterface $manager)
@@ -87,7 +91,7 @@ class EventController extends AbstractController
                 "Les modifications de l'évenement <strong>{$event->getName()}</strong> ont bien été enregistré !"
             );
 
-            return $this->redirectToRoute('events_show', [
+            return $this->redirectToRoute('events_index', [
                 'slug' => $event->getSlug()
             ]);
         }
@@ -103,6 +107,7 @@ class EventController extends AbstractController
      *
      * @Route("/events/{slug}", name="events_show")
      *
+     * @param Event $event
      * @return Response
      */
     public function show(Event $event)
