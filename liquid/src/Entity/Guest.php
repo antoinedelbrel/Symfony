@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class Guest
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Event", inversedBy="guests")
+     */
+    private $event;
+
+    public function __construct()
+    {
+        $this->event = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +80,32 @@ class Guest
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvent(): Collection
+    {
+        return $this->event;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->event->contains($event)) {
+            $this->event[] = $event;
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->event->contains($event)) {
+            $this->event->removeElement($event);
+        }
 
         return $this;
     }

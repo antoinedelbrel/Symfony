@@ -33,9 +33,15 @@ class Event
      */
     private $date;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Guest", mappedBy="event")
+     */
+    private $guests;
+
     public function __construct()
     {
         $this->author_id = new ArrayCollection();
+        $this->guests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,34 @@ class Event
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Guest[]
+     */
+    public function getGuests(): Collection
+    {
+        return $this->guests;
+    }
+
+    public function addGuest(Guest $guest): self
+    {
+        if (!$this->guests->contains($guest)) {
+            $this->guests[] = $guest;
+            $guest->addEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGuest(Guest $guest): self
+    {
+        if ($this->guests->contains($guest)) {
+            $this->guests->removeElement($guest);
+            $guest->removeEvent($this);
+        }
 
         return $this;
     }

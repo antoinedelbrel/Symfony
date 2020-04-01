@@ -65,7 +65,7 @@ class GuestController extends AbstractController
     /**
      * Permet de modifier les caractéristique d'un invité
      * 
-     * @Route("/guests/{slug}/edit", name="guests_edit")
+     * @Route("/guests/edit/{id}", name="guests_edit")
      * 
      * @param Guest $guest
      * @param Request $request
@@ -102,7 +102,7 @@ class GuestController extends AbstractController
     /**
      * Permet d'afficher un invité
      * 
-     * @Route("/guests/{slug}", name="guests_show")
+     * @Route("/guests/{id}", name="guests_show")
      * 
      * @param Guest $guest
      * @return Response
@@ -117,7 +117,7 @@ class GuestController extends AbstractController
     /**
      * Permet de supprimer un invité
      * 
-     * @Route("/guests/{slug}/delete", name="guests_delete")
+     * @Route("/guests/delete/{id}", name="guests_delete")
      * 
      * @param Guest $guest
      * @param EntityManagerInterface $manager

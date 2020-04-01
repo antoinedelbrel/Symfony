@@ -68,7 +68,7 @@ class EventController extends AbstractController
     /**
      * Permet de modifier un évenement
      * 
-     * @Route("/events/{slug}/edit", name="events_edit")
+     * @Route("/events/edit/{id}", name="events_edit")
      * 
      * @param Event $event
      * @param Request $request
@@ -105,7 +105,7 @@ class EventController extends AbstractController
     /**
      * Permet d'afficher un seul évenememnt
      *
-     * @Route("/events/{slug}", name="events_show")
+     * @Route("/events/{id}", name="events_show")
      *
      * @param Event $event
      * @return Response
@@ -120,7 +120,7 @@ class EventController extends AbstractController
     /**
      * Permet de supprimer un évenement
      *
-     * @Route("/events/{slug}/delete", name="events_delete")
+     * @Route("/events/delete/{id}", name="events_delete")
      * @param Event $event
      * @param EntityManagerInterface $manager
      * @return Response
