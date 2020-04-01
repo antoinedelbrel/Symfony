@@ -33,11 +33,6 @@ class Event
      */
     private $date;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
-     */
-    private $user;
-
     public function __construct()
     {
         $this->author_id = new ArrayCollection();
@@ -84,17 +79,4 @@ class Event
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    
 }
