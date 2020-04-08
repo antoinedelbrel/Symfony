@@ -38,10 +38,16 @@ class Event
      */
     private $guests;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Expence", mappedBy="event")
+     */
+    private $expences;
+
     public function __construct()
     {
         $this->author_id = new ArrayCollection();
         $this->guests = new ArrayCollection();
+        $this->expences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,6 +114,37 @@ class Event
         if ($this->guests->contains($guest)) {
             $this->guests->removeElement($guest);
             $guest->removeEvent($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Expence[]
+     */
+    public function getExpences(): Collection
+    {
+        return $this->expences;
+    }
+
+    public function addExpence(Expence $expence): self
+    {
+        if (!$this->expences->contains($expence)) {
+            $this->expences[] = $expence;
+            $expence->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExpence(Expence $expence): self
+    {
+        if ($this->expences->contains($expence)) {
+            $this->expences->removeElement($expence);
+            // set the owning side to null (unless already changed)
+            if ($expence->getEvent() === $this) {
+                $expence->setEvent(null);
+            }
         }
 
         return $this;

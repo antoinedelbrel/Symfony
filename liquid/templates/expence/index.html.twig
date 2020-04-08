@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dépense{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="depense">
+        <div class="col-lg-12 margin-tb d-flex justify-content-between mb-2">
+            <div class="pull-left">
+                <h2>Achat</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ path('expences_create') }}">Ajouter un nouvel achat</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered rwd-table">
+            <tbody>
+                <tr>
+                    <th>id</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Guest</th>
+                    <th>Event</th>
+                    <th width="280px">Action</th>
+                </tr>
+                {% for expence in expences %}
+                <tr>
+                    <td>{{ expence.id }}</td>
+                    <td>{{ expence.name }}</td>
+                    <td>{{ expence.price }}</td>
+                    <td>{{ expence.guest }}</td>
+                    <td>{{ expence.event }}</td>
+
+                    <td>
+                        <form action="" method="POST">
+
+                            <a class="btn btn-info" href="">Show</a>
+
+                            <a class="btn btn-primary" href="">Edit</a>
+
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

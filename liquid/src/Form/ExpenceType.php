@@ -2,17 +2,17 @@
 
 namespace App\Form;
 
-use App\Entity\Guest;
+use App\Entity\Expence;
 use App\Form\EventType;
-use App\Form\ApplicationType;
+use App\Form\GuestType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class GuestType extends ApplicationType
+class ExpenceType extends ApplicationType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,25 +20,26 @@ class GuestType extends ApplicationType
             ->add(
                 'name',
                 TextType::class,
-                $this->getConfiguration("Invité", "Tapez le nom de votre invité"),
+                $this->getConfiguration("Nom", "Qu'avez vous acheté")
             )
             ->add(
-                'email',
-                EmailType::class,
-                $this->getConfiguration("Email", "Entrez l'adresse mail de votre invité"),
+                'price',
+                MoneyType::class,
+                $this->getConfiguration("Prix", "Combien ça vous a couté")
             )
             ->add(
-                'slug',
-                TextType::class,
-                $this->getConfiguration("Adresse web", "Tapez l'adresse web (automatique)")
+                'guest',
+                CollectionType::class,
+                [
+                    'entry_type' => GuestType::class,
+
+                ]
             )
             ->add(
                 'event',
-                CollectionType::class,
-                [
+                CollectionType::class,[
                     'entry_type' => EventType::class,
-                    'entry_options' => ['label' => false],
-                    'allow_add' => true,
+                    
                 ]
             );
     }
@@ -46,7 +47,7 @@ class GuestType extends ApplicationType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Guest::class,
+            'data_class' => Expence::class,
         ]);
     }
 }

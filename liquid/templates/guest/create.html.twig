@@ -10,6 +10,12 @@
 
     {{ form_widget(form) }}
 
+    <ul class="event">
+        {% for event in form.events %}
+        <li>{{ form_row(event.name) }}</li>
+        {% endfor %}
+    </ul>
+
     <button type="submit" class="btn btn-primary">Ajoutez le nouvel invité</button>
 
     {{ form_end(form) }}

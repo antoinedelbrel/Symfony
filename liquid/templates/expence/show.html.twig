@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% bloxk title %}{{ expence.name}}{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="menu margin-tb">
+        <div class="gauche pull-left text-left">
+            <h2 class="titre"> {{ expence.name }}</h2>
+            <h2 class="titre">{{ expence.price }}</h2>
+            <h2 class="titre">{{ expence.guest }}</h2>
+            <h2 class="titre">{{ expence.event }}</h2>
+        </div>
+        <div class="droite pull-right">
+            <a class="btn btn-primary " href="{{ path('expences_index') }}"> Back</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

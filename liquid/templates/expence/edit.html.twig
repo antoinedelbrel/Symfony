@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'un achat{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <h1>Modifiez l'achat {{ expence.name }}</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}

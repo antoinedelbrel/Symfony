@@ -79,6 +79,10 @@ class GuestController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($guest->getEvent() as $event) {
+                $event->setAd($guest);
+                $manager->persist($event); 
+            }
 
             $manager->persist($guest);
             $manager->flush();
