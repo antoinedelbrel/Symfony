@@ -37,11 +37,12 @@
                     <td>
                         <form action="" method="POST">
 
-                            <a class="btn btn-info" href="">Show</a>
+                            <a class="btn btn-info" href="{{ path('expences_show',{id: expence.id}) }}">Show</a>
 
-                            <a class="btn btn-primary" href="">Edit</a>
+                            <a class="btn btn-primary" href="{{ path('expences_edit',{id: expence.id}) }}">Edit</a>
 
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <a class="btn btn-danger" href="{{ path('expences_delete',{id: expence.id}) }}">Delete</a>
+
                         </form>
                     </td>
                 </tr>

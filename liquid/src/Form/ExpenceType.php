@@ -27,21 +27,21 @@ class ExpenceType extends ApplicationType
                 MoneyType::class,
                 $this->getConfiguration("Prix", "Combien ça vous a couté")
             )
-            ->add(
-                'guest',
-                CollectionType::class,
-                [
-                    'entry_type' => GuestType::class,
+            // ->add(
+            //     'guest',
+            //     CollectionType::class,
+            //     [
+            //         'entry_type' => GuestType::class,
 
-                ]
-            )
-            ->add(
-                'event',
-                CollectionType::class,[
-                    'entry_type' => EventType::class,
-                    
-                ]
-            );
+            //     ]
+            // )
+            // ->add(
+            //     'event',
+            //     CollectionType::class,[
+            //         'entry_type' => EventType::class,
+
+            //     ]
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

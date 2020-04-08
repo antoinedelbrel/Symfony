@@ -32,15 +32,15 @@ class GuestType extends ApplicationType
                 TextType::class,
                 $this->getConfiguration("Adresse web", "Tapez l'adresse web (automatique)")
             )
-            ->add(
-                'event',
-                CollectionType::class,
-                [
-                    'entry_type' => EventType::class,
-                    'entry_options' => ['label' => false],
-                    'allow_add' => true,
-                ]
-            );
+            // ->add(
+            //     'events',
+            //     CollectionType::class,
+            //     [
+            //         'entry_type' => EventType::class,
+            //         'entry_options' => ['label' => false],
+            //         'allow_add' => true,
+            //     ]
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

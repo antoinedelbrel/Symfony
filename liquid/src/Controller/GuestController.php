@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Entity\Guest;
 use App\Form\GuestType;
 use App\Repository\GuestRepository;
@@ -38,11 +39,19 @@ class GuestController extends AbstractController
     {
         $guest = new Guest();
 
+        // $event = new Event();
+        // $event->setName('event');
+        // $guest->getEvent()->add($event);
+
         $form = $this->createForm(GuestType::class, $guest);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // foreach ($guest->getEvent() as $event) {
+            //     $event->setGuest($guest);
+            //     $manager->persist($event);
+            // }
 
             $manager->persist($guest);
             $manager->flush();
@@ -74,15 +83,14 @@ class GuestController extends AbstractController
      */
     public function edit(Guest $guest, Request $request, EntityManagerInterface $manager)
     {
+
         $form = $this->createForm(GuestType::class, $guest);
 
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
-            foreach ($guest->getEvent() as $event) {
-                $event->setAd($guest);
-                $manager->persist($event); 
-            }
 
             $manager->persist($guest);
             $manager->flush();
